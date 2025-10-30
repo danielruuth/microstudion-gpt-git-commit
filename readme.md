@@ -16,13 +16,6 @@
 
 ---
 
-## Demo
-
-*(Add a GIF or screenshot here later)*  
-![Demo](docs/demo.gif)
-
----
-
 ## Installation
 
 ### 1️⃣ Clone and install dependencies

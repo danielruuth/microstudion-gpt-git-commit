@@ -1,0 +1,64 @@
+{
+  "name": "git-commit-gpt",
+  "displayName": "Git Commit GPT",
+  "description": "Skapar mänskliga, sakliga commit-meddelanden med ChatGPT utifrån dina staged ändringar.",
+  "version": "0.2.0",
+  "publisher": "microstudion.se",
+  "engines": { "vscode": "^1.86.0" },
+  "categories": ["SCM", "Other"],
+  "activationEvents": [
+    "onCommand:git-commit-gpt.stageAndCommit"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "git-commit-gpt.stageAndCommit",
+        "title": "Commit GPT: Stage All → Preview → Commit"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "Git Commit GPT",
+      "properties": {
+        "gitCommitGPT.openaiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API key (lämna tom för att använda miljövariabeln OPENAI_API_KEY).",
+          "markdownDescription": "OpenAI API key.\n*Tips:* lämna tomt för att använd en **miljövariabel** `OPENAI_API_KEY`."
+        },
+        "gitCommitGPT.model": {
+          "type": "string",
+          "default": "gpt-4.1-mini",
+          "description": "OpenAI-modell för commit-generering (t.ex. gpt-4.1-mini, gpt-4o-mini, o4-mini)."
+        },
+        "gitCommitGPT.language": {
+          "type": "string",
+          "default": "sv",
+          "enum": ["sv", "en"],
+          "description": "Språk för commit-meddelanden."
+        },
+        "gitCommitGPT.maxDiffChars": {
+          "type": "number",
+          "default": 20000,
+          "description": "Max antal tecken från diffen att skicka till modellen."
+        },
+        "gitCommitGPT.commitStyle": {
+          "type": "string",
+          "default": "concise",
+          "enum": ["concise", "detailed", "conventional"],
+          "description": "Stil: kortfattad, detaljerad eller Conventional Commits."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "openai": "^4.56.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.0",
+    "vsce": "^2.15.0",
+    "vscode": "latest"
+  }
+}
